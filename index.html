@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完整 Python 積木集的 Blockly 學習環境（帶深淺色模式）</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/python_compressed.js"></script>
+    <script src="blockly_script.js" defer></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        #mainContainer {
+            display: flex;
+            height: 100%;
+        }
+        #leftPanel {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s;
+        }
+        body.dark-mode #leftPanel {
+            background-color: #2d2d2d;
+        }
+        #buttonContainer {
+            padding: 10px;
+        }
+        #buttonContainer button {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        body.dark-mode #buttonContainer button {
+            background-color: #45a049;
+        }
+        #buttonContainer button:hover {
+            background-color: #45a049;
+        }
+        body.dark-mode #buttonContainer button:hover {
+            background-color: #4CAF50;
+        }
+        #blocklyDiv {
+            flex-grow: 1;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            background-color: white;
+            border: 1px solid black;
+            padding: 20px;
+            overflow: auto;
+            z-index: 1000;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode .popup {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        .closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+        }
+        body.dark-mode .closeButton {
+            color: #ffffff;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="leftPanel">
+            <div id="buttonContainer">
+                <button onclick="saveBlocks()">保存積木</button>
+                <button onclick="loadBlocks()">加載積木</button>
+                <button onclick="togglePythonCode()">顯示/隱藏 Python 代碼</button>
+                <button onclick="copyPythonCode()">複製 Python 代碼</button>
+                <button onclick="downloadPythonCode()">下載 Python 代碼</button>
+                <button onclick="toggleJson()">顯示/隱藏 JSON</button>
+                <button onclick="clearWorkspace()">清除工作區</button>
+                <button onclick="toggleDarkMode()">切換深淺色模式</button>
+            </div>
+        </div>
+        <div id="blocklyDiv"></div>
+    </div>
+    <div id="overlay"></div>
+    <div id="pythonCode" class="popup">
+        <span class="closeButton" onclick="closePopup('pythonCode')">×</span>
+        <pre id="pythonCodeContent"></pre>
+    </div>
+    <div id="jsonContent" class="popup">
+        <span class="closeButton" onclick="closePopup('jsonContent')">×</span>
+        <pre id="jsonContentText"></pre>
+    </div>
+</body>
+</html>
