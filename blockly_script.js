@@ -3,7 +3,7 @@ var toolbox = {
     "contents": [
         {
             "kind": "category",
-            "name": "邏輯",
+            "name": "邏輯 (Logic)",
             "colour": "%{BKY_LOGIC_HUE}",
             "contents": [
                 {"kind": "block", "type": "controls_if"},
@@ -17,7 +17,7 @@ var toolbox = {
         },
         {
             "kind": "category",
-            "name": "循環",
+            "name": "循環 (Loop)",
             "colour": "%{BKY_LOOPS_HUE}",
             "contents": [
                 {"kind": "block", "type": "controls_repeat_ext"},
@@ -29,7 +29,7 @@ var toolbox = {
         },
         {
             "kind": "category",
-            "name": "數學",
+            "name": "數學 (Math)",
             "colour": "%{BKY_MATH_HUE}",
             "contents": [
                 {"kind": "block", "type": "math_number"},
@@ -49,7 +49,7 @@ var toolbox = {
         },
         {
             "kind": "category",
-            "name": "文本",
+            "name": "文本 (Text)",
             "colour": "%{BKY_TEXTS_HUE}",
             "contents": [
                 {"kind": "block", "type": "text"},
@@ -68,7 +68,7 @@ var toolbox = {
         },
         {
             "kind": "category",
-            "name": "列表",
+            "name": "列表 (List)",
             "colour": "%{BKY_LISTS_HUE}",
             "contents": [
                 {"kind": "block", "type": "lists_create_with"},
@@ -85,19 +85,19 @@ var toolbox = {
         },
         {
             "kind": "category",
-            "name": "變量",
+            "name": "變量 (Variable)",
             "custom": "VARIABLE",
             "colour": "%{BKY_VARIABLES_HUE}"
         },
         {
             "kind": "category",
-            "name": "函數",
+            "name": "函數 (Function)",
             "custom": "PROCEDURE",
             "colour": "%{BKY_PROCEDURES_HUE}"
         },
         {
             "kind": "category",
-            "name": "輸入/輸出",
+            "name": "輸入/輸出 (In/Output)",
             "colour": "#A56E5C",
             "contents": [
                 {"kind": "block", "type": "text_print"},
@@ -179,7 +179,7 @@ function loadBlocks() {
                 workspace.clear();
                 Blockly.serialization.workspaces.load(json, workspace);
             } catch (error) {
-                alert('加載失敗。請確保選擇了正確的 Blockly JSON 文件。');
+                alert('載入失敗。請確保選擇了正確的 Blockly JSON 文件。');
             }
         };
         reader.readAsText(file);
@@ -201,9 +201,9 @@ function togglePythonCode() {
 function copyPythonCode() {
     var code = Blockly.Python.workspaceToCode(workspace);
     navigator.clipboard.writeText(code).then(function() {
-        alert('Python 代碼已複製到剪貼板');
+        alert('Python 程式碼已複製到剪貼板');
     }, function(err) {
-        alert('複製失敗，請手動複製代碼。');
+        alert('複製失敗，請手動複製程式碼。');
     });
 }
 
